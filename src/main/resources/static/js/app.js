@@ -18,42 +18,7 @@ function deliveryApp() {
             this.count++;
         },
         
-        async loadDeliveries() {
-            this.loading = true;
-            try {
-                const response = await fetch('/api/deliveries');
-                this.deliveries = await response.json();
-            } catch (error) {
-                console.error('Error loading deliveries:', error);
-            } finally {
-                this.loading = false;
-            }
-        },
-        
-        async createDelivery() {
-            const customerName = prompt('Enter customer name:');
-            const address = prompt('Enter delivery address:');
-            
-            if (customerName && address) {
-                try {
-                    const response = await fetch('/api/deliveries', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        body: `customerName=${encodeURIComponent(customerName)}&address=${encodeURIComponent(address)}`
-                    });
-                    
-                    if (response.ok) {
-                        await this.loadDeliveries();
-                        alert('Delivery created successfully!');
-                    }
-                } catch (error) {
-                    console.error('Error creating delivery:', error);
-                    alert('Error creating delivery');
-                }
-            }
-        },
+    
         
         async updateStatus(id, currentStatus) {
             const newStatus = prompt('Enter new status (PENDING, IN_TRANSIT, DELIVERED):', currentStatus);
