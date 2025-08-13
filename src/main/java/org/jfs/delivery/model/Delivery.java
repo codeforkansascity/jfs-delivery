@@ -1,4 +1,3 @@
-/*
 package org.jfs.delivery.model;
 
 import org.springframework.data.annotation.Id;
@@ -40,5 +39,4 @@ public class Delivery {
     
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
-}
-*/ 
+} 

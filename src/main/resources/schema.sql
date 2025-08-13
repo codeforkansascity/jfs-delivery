@@ -1,4 +1,4 @@
--- Create deliveries table for Spring Data JDBC demo
+-- Create deliveries table if it doesn't exist
 CREATE TABLE IF NOT EXISTS deliveries (
     id BIGSERIAL PRIMARY KEY,
     customer_name VARCHAR(255) NOT NULL,
@@ -7,9 +7,13 @@ CREATE TABLE IF NOT EXISTS deliveries (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Insert some sample data
+-- Truncate the table to clear existing data
+TRUNCATE TABLE deliveries RESTART IDENTITY CASCADE;
+
+-- Insert fresh sample data
 INSERT INTO deliveries (customer_name, address, status) VALUES
     ('John Doe', '123 Main St, Anytown, USA', 'PENDING'),
     ('Jane Smith', '456 Oak Ave, Somewhere, USA', 'IN_TRANSIT'),
-    ('Bob Johnson', '789 Pine Rd, Elsewhere, USA', 'DELIVERED')
-ON CONFLICT DO NOTHING; 
+    ('Bob Johnson', '789 Pine Rd, Elsewhere, USA', 'DELIVERED'),
+    ('Alice Brown', '321 Elm St, Downtown, USA', 'PENDING'),
+    ('Charlie Wilson', '654 Pine Ave, Uptown, USA', 'DELIVERED'); 
