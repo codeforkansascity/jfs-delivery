@@ -1,13 +1,98 @@
-<html>
-    <head><title>
-        Route Assignments
-    </title>
-</head>
-<body>
-select a group***
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JFS Drivers Assignments</title>
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+    <script defer th:src="@{/js/app.js}"></script>
+    <script th:src="@{/js/fakedata.js}"></script>
+  </head>
+  <body>
+    <div>
+      <label for="deliveryGroups">Select a group: </label>
+      <select name="deliveryGroups" id="deliveryGroupsSelect"></select>
+    </div>
+    <br />
+    <div style="width: 100%; vertical-align: top">Route</div>
+    <br />
+    <br />
+    <div style="display: inline-block; width: 40%; vertical-align: top;">
+      <label for="drivers">Select a Driver: </label>
+      <select name="drivers" id="driverSelect"></select>
+    </div>
+    <br />
+    Add or remove addresses<br />
+    <div style="display: inline-block; width: 40%; vertical-align: top; min-height: 500px;border:1px solid">
+      <div id="routeAddresses" class="list route"></div>
+    </div>
+    <div style="display: inline-block; width: 40%;min-height: 500px; vertical-align: top;border:1px solid">
+      <div id="available" class="list drops">
+      </div>
+    </div>
+    <script>
+      let deliveryGroups = document.getElementById("deliveryGroupsSelect");
+      window.groups.forEach((g) => {
+        let opt = document.createElement("option");
+        opt.value = g;
+        opt.label = g;
+        deliveryGroups.append(opt);
+      });
 
+      let driverSelect = document.getElementById("driverSelect");
+      window.drivers.forEach((d) => {
+        let opt = document.createElement("option");
+        opt.value = d.name;
+        opt.label = d.name;
+        driverSelect.append(opt);
+      });
+      let drops = window.deliveries;
+      drops.forEach((d) => {
+        let ditem = document.createElement("div");
+        ditem.innerHTML = d.Name;
+        ditem.addEventListener("click", (e) => {
+          addDrop(e);
+        });
+        let available = document.getElementById("available");
+        available.appendChild(ditem);
+      });
 
+      //initialize events
+      function InitializeEvents() {
+        //remove from route
+        Array.from(document.getElementsByClassName("routeitem")).forEach(
+          (e) => {
+            e.addEventListener("click", (e) => {
+              removeDrop(e);
+            });
+          }
+        );
+        //add to route
+        Array.from(document.getElementsByClassName("dropitem")).forEach((e) => {
+          e.addEventListener("click", (e) => {
+            addDrop(e);
+          });
+        });
+      }
+      function addDrop(e) {
+        let routeAddresses = document.getElementById("routeAddresses");
+        routeAddresses.appendChild(e.target);
+        e.target.removeEventListener("click", null);
+        e.target.addEventListener("click", (e) => {
+          removeDrop(e);
+        });
+      }
 
-</body>
-    
+      function removeDrop(e) {
+        let available = document.getElementById("available");
+        available.appendChild(e.target);
+      }
+
+      InitializeEvents();
+    </script>
+  </body>
 </html>

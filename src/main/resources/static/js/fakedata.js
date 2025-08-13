@@ -1,4 +1,4 @@
-[
+var deliveries= [
   {
     "Family ID": "4063",
     "PID": "50168",
@@ -253,3 +253,49 @@
     "Zipcode": "66062"
   }
 ]
+
+var drivers=[
+    {  
+        name: "Nate",
+        address: "1234 happy lane",
+        phone:"867-5309",
+        email:"nate@jfsdeliveries.com",
+        notes:"sometimes a little gumpy.",
+        group:"1"
+    },
+        {  
+        name: "Gabe",
+        address: "1234 happy lane",
+        phone:"867-5309",
+        email:"gabe@jfsdeliveries.com",
+        notes:"Friendly, but caffiene required.",
+        group:"2"
+    },
+        {  
+        name: "Karhik",
+        address: "1234 happy lane",
+        phone:"867-5309",
+        email:"Karhik@jfsdeliveries.com",
+        notes:"database guy. limited personality",
+        group:"1"
+    },
+        {  
+        name: "Anupriya",
+        address: "1234 happy lane",
+        phone:"867-5309",
+        email:"Anupriya@jfsdeliveries.com",
+        notes:"Always helpful, but shy.",
+        group:"1"
+    },
+        {  
+        name: "Josh",
+        address: "1234 happy lane",
+        phone:"867-5309",
+        email:"josh@jfsdeliveries.com",
+        notes:"AI master. Trust but verify.",
+        group:"1"
+    }
+]
+
+var groups=["Group 1","Group 2"]
+
