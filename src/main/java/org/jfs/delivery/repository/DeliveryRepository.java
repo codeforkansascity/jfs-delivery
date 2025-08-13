@@ -1,3 +1,4 @@
+/*
 package org.jfs.delivery.repository;
 
 import org.jfs.delivery.model.Delivery;
@@ -16,4 +17,5 @@ public interface DeliveryRepository extends CrudRepository<Delivery, Long> {
     
     @Query("SELECT * FROM deliveries WHERE customer_name ILIKE :customerName")
     List<Delivery> findByCustomerNameContaining(@Param("customerName") String customerName);
-} 
+}
+*/ 

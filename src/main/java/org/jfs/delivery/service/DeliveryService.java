@@ -1,3 +1,4 @@
+/*
 package org.jfs.delivery.service;
 
 import org.jfs.delivery.model.Delivery;
@@ -48,4 +49,5 @@ public class DeliveryService {
         }
         throw new RuntimeException("Delivery not found with id: " + id);
     }
-} 
+}
+*/ 
