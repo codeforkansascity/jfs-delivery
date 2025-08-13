@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JFS Drivers</title>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer th:src="@{/js/app.js}"></script>
+    <script th:src="@{/js/fakedata.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+    <label for="deliveryGroups">Select a group: </label>
+<input list="deliveryGroups" name="deliveryGroups"  id="deliveryGroups" />
+<datalist id="deliveryGroups">
+    <options>e</options>
+</datalist>
+
+<ul>
+    <li>Driver1 - </li>
+    <li>Driver 2</li>
+    <li>driver3</li>
+</ul>
+<script>
+    let deliveryGroups = document.getElementById("deliveryGroups")
+    window.groups.forEach(g =>{
+        console.log(g)
+        let opt = document.createElement("option")
+        opt.value=g
+        opt.label=g
+        deliveryGroups.append(opt)
+    })
+    </script>
+
+</body>
+    
+</html>
