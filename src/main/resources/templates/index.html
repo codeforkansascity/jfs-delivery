@@ -8,29 +8,48 @@
     <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
 <body>
-    <div class="container" x-data="{ 
-        message: 'Hello World!', 
-        count: 0,
-        updateMessage() {
-            this.message = 'Hello from Alpine.js!';
-        },
-        increment() {
-            this.count++;
-        }
-    }">
+    <div class="container" x-data="deliveryApp()" x-init="init()">
         <h1 x-text="message"></h1>
-        <p class="message">Welcome to your Spring Boot + Alpine.js application!</p>
+        <p class="message">Welcome to your Spring Boot + Alpine.js + Spring Data JDBC application!</p>
         
         <div class="counter" x-text="'Count: ' + count"></div>
         
-        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px;">
             <button @click="updateMessage">Update Message</button>
             <button @click="increment">Increment Counter</button>
+            <button @click="createDelivery">Create Delivery</button>
+            <button @click="loadDeliveries">Refresh Deliveries</button>
+        </div>
+        
+        <!-- Delivery List Section -->
+        <div class="delivery-list" x-show="deliveries.length > 0">
+            <h2>Current Deliveries</h2>
+            <div x-show="loading" style="text-align: center; color: #666;">Loading...</div>
+            
+            <template x-for="delivery in deliveries" :key="delivery.id">
+                <div class="delivery-item">
+                    <h3 x-text="delivery.customerName"></h3>
+                    <p><strong>Address:</strong> <span x-text="delivery.address"></span></p>
+                    <p><strong>Status:</strong> 
+                        <span class="status-badge" :class="getStatusClass(delivery.status)" x-text="delivery.status"></span>
+                    </p>
+                    <p><strong>Created:</strong> <span x-text="new Date(delivery.createdAt).toLocaleDateString()"></span></p>
+                    <button @click="updateStatus(delivery.id, delivery.status)" style="margin-top: 10px;">
+                        Update Status
+                    </button>
+                </div>
+            </template>
+        </div>
+        
+        <div x-show="deliveries.length === 0 && !loading" style="text-align: center; color: #666; margin-top: 20px;">
+            No deliveries found. Create one to get started!
         </div>
         
         <p style="margin-top: 30px; color: #888; font-size: 0.9em;">
-            This is a simple demo showing Alpine.js integration with Spring Boot
+            This demo shows Spring Boot + Alpine.js + Spring Data JDBC integration
         </p>
     </div>
+    
+    <script th:src="@{/js/app.js}"></script>
 </body>
 </html> 

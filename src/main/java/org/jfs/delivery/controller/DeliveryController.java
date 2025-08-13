@@ -1,4 +1,3 @@
-/*
 package org.jfs.delivery.controller;
 
 import org.jfs.delivery.model.Delivery;
@@ -46,5 +45,4 @@ public class DeliveryController {
     public List<Delivery> getDeliveriesByStatus(@PathVariable String status) {
         return deliveryService.getDeliveriesByStatus(status);
     }
-}
-*/ 
+} 

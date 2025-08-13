@@ -1,8 +1,19 @@
 # Delivery Spring Boot App
 
-Simple Spring Boot app with Alpine.js frontend.
+Simple Spring Boot app with Alpine.js frontend and Spring Data JDBC backend.
+
+## Prerequisites
+
+- Java 24
+- Maven (or use `./mvnw` wrapper)
+- PostgreSQL
 
 ## Quick Start
+
+**Install PostgreSQL:**
+```bash
+brew install postgresql && brew services start postgresql
+```
 
 **Run the app:**
 ```bash
@@ -23,8 +34,4 @@ Simple Spring Boot app with Alpine.js frontend.
 **Clean build:**
 ```bash
 ./mvnw clean
-```
-
-## Prerequisites
-- Java 24
-- Maven (or use `./mvnw` wrapper) 
+``` 
